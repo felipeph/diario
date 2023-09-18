@@ -2,13 +2,14 @@ import streamlit as st
 
 from functions import load_or_create_df, new_row_to_csv, time_now, last_record_time
 
-records_file = "data/records.csv"
+records_file = "records.csv"
 records_columns_names = ["description",
                           "date_time_end",
                           "date_time_start",
                           ]
 st.session_state["records_df"] = load_or_create_df(records_file, records_columns_names)
 records_df = st.session_state["records_df"]
+records_df = records_df.astype(str)
 
 
 with st.form(key="Novo Registro", clear_on_submit=True):
@@ -24,7 +25,7 @@ with st.form(key="Novo Registro", clear_on_submit=True):
 if new_record_submitted:
     new_row_to_csv(records_file, records_df, records_columns_names, new_record_values)
     st.success("Novo registro realizado com sucesso.")
-    st.experimental_rerun()
+    #st.experimental_rerun()
 
 st.table(records_df)
 
