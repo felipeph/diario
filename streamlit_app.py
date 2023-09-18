@@ -28,6 +28,14 @@ if new_record_submitted:
 
 st.table(records_df)
 
+
+
+st.download_button(
+    label="Baixar dados como CSV",
+    data=records_df.to_csv(index=False),
+    file_name='records.csv',
+    mime='text/csv',
+)
     
 # ---------------- Debug---------------------
 st.sidebar.write(st.session_state)
