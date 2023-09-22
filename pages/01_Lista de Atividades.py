@@ -16,9 +16,6 @@ import params.lists as l
 activities_df = f.load_or_create_df(p.activities_csv, l.activities_columns)
 
 with st.container():
-    st.table(activities_df)
-
-with st.container():
     st.title("Lista de Atividades")
     
 with st.container():

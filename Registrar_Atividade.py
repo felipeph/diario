@@ -23,12 +23,12 @@ with st.container():
 with st.container():
     with st.form(key="Novo Registro", clear_on_submit=True):
         new_register_activity = st.selectbox(label="Atividade:", options=activities_df.sort_values(by="activity"))
-        new_register_start = f.last_record_time(records_df)
-        new_register_end = f.time_now()
-        new_register_duration = new_register_end - new_register_start
-        new_register_values = [new_register_activity, new_register_start, new_register_end, new_register_duration]
         new_register_submmited = st.form_submit_button(label="Salvar", use_container_width=True)
         if new_register_submmited:
+            new_register_start = f.last_record_time(records_df)
+            new_register_end = f.time_now()
+            new_register_duration = new_register_end - new_register_start
+            new_register_values = [new_register_activity, new_register_start, new_register_end, new_register_duration]
             f.new_row_to_csv(p.records_csv, records_df, l.records_columns, new_register_values)
             st.rerun()
 
