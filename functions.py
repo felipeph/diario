@@ -62,6 +62,7 @@ def time_now():
     
 def last_record_time(dataframe):
     # Verifica se dataframe não está vazio
+    dataframe = convert_registers_to_datetime(dataframe)
     if not dataframe.empty:
         
         # Obtenha a data e hora do fim da atividade mais recente
@@ -70,3 +71,8 @@ def last_record_time(dataframe):
         # Se não houver registros anteriores, use o horário atual como início
         last_record_time = time_now()
     return last_record_time
+
+def convert_registers_to_datetime(df):
+    df["date_time_start"] = pd.to_datetime(df["date_time_start"])
+    df["date_time_end"] = pd.to_datetime(df["date_time_end"])
+    return df
